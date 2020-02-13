@@ -1,0 +1,16 @@
+---
+- name: Create  AWS machine and dynamic inv
+  hosts: localhost
+  connection: local
+  roles:
+    - tomcat_aws
+
+
+- name: Demo for Installing app using Role
+  hosts: webservers
+  become: yes
+  remote_user: ubuntu
+  environment:
+    ANSIBLE_CONFIG: "ansible.cfg"
+  roles:
+    - install-app
